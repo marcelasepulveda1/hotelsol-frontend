@@ -26,6 +26,11 @@ export const datosIniciales = {
     { codigo: 'RS004', huesped: 'Ana Silva', habitacion: 'HB006', checkIn: '2026-10-22', checkOut: '2026-10-28', estado: 'Reservado' },
     { codigo: 'RS005', huesped: 'Pedro Rojas', habitacion: 'HB003', checkIn: '2026-10-18', checkOut: '2026-10-19', estado: 'Check-out' },
   ],
+  usuarios: [
+    { nombre: 'Administrador', correo: 'admin@hotelsol.cl', clave: 'admin123', rol: 'admin' },
+    { nombre: 'Juan Pérez', correo: 'juan@correo.cl', clave: 'juan123', rol: 'cliente' },
+  ],
+  mensajes: [],
 };
 
 // ---------- Persistencia ----------
@@ -115,6 +120,42 @@ export function crearReserva({ huesped, habitacion, checkIn, checkOut }) {
   db.reservas.push(reserva);
   guardarDB(db);
   return { ok: true, reserva };
+}
+
+// ---------- Usuarios (registro e inicio de sesión) ----------
+// Se usa "|| []" por si el navegador tiene guardada una BD antigua sin usuarios.
+export function listarUsuarios() {
+  return cargarDB().usuarios || [];
+}
+
+export function registrarUsuario({ nombre, correo, clave }) {
+  const db = cargarDB();
+  db.usuarios = db.usuarios || [];
+  if (db.usuarios.some((u) => u.correo === correo)) {
+    return { ok: false, mensaje: 'Ya existe una cuenta con ese correo.' };
+  }
+  const usuario = { nombre, correo, clave, rol: 'cliente' };
+  db.usuarios.push(usuario);
+  guardarDB(db);
+  return { ok: true, usuario };
+}
+
+export function iniciarSesion(correo, clave) {
+  const usuario = listarUsuarios().find((u) => u.correo === correo && u.clave === clave);
+  if (!usuario) return { ok: false, mensaje: 'Correo o contraseña incorrectos.' };
+  return { ok: true, usuario };
+}
+
+// ---------- Mensajes de contacto ----------
+export function listarMensajes() {
+  return cargarDB().mensajes || [];
+}
+
+export function guardarMensaje(mensaje) {
+  const db = cargarDB();
+  db.mensajes = db.mensajes || [];
+  db.mensajes.push({ ...mensaje, fecha: new Date().toISOString().slice(0, 10) });
+  guardarDB(db);
 }
 
 export function calcularNoches(checkIn, checkOut) {

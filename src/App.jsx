@@ -9,6 +9,9 @@ import Reserva from './pages/Reserva';
 import Checkout from './pages/Checkout';
 import Resultado from './pages/Resultado';
 import Nosotros from './pages/Nosotros';
+import Contacto from './pages/Contacto';
+import Login from './pages/Login';
+import Registro from './pages/Registro';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminHabitaciones from './pages/admin/AdminHabitaciones';
 import AdminReservas from './pages/admin/AdminReservas';
@@ -29,6 +32,9 @@ export default function App() {
             <Route path="/reserva-exitosa" element={<Resultado exito />} />
             <Route path="/reserva-error" element={<Resultado exito={false} />} />
             <Route path="/nosotros" element={<Nosotros />} />
+            <Route path="/contacto" element={<Contacto />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/registro" element={<Registro />} />
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/admin/habitaciones" element={<AdminHabitaciones />} />
             <Route path="/admin/reservas" element={<AdminReservas />} />

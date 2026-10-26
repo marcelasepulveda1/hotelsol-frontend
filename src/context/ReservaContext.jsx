@@ -6,6 +6,7 @@ const ReservaContext = createContext(null);
 export function ReservaProvider({ children }) {
   const [seleccion, setSeleccion] = useState(null); // { habitacion, checkIn, checkOut }
   const [servicios, setServicios] = useState([]);
+  const [usuario, setUsuario] = useState(null); // usuario que inició sesión (null = nadie)
 
   const agregarServicio = (servicio) =>
     setServicios((prev) => (prev.some((s) => s.codigo === servicio.codigo) ? prev : [...prev, servicio]));
@@ -16,7 +17,7 @@ export function ReservaProvider({ children }) {
   };
 
   return (
-    <ReservaContext.Provider value={{ seleccion, setSeleccion, servicios, agregarServicio, quitarServicio, limpiar }}>
+    <ReservaContext.Provider value={{ seleccion, setSeleccion, servicios, agregarServicio, quitarServicio, limpiar, usuario, setUsuario }}>
       {children}
     </ReservaContext.Provider>
   );
