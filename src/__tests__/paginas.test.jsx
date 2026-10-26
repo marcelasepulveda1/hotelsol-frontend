@@ -51,6 +51,15 @@ describe('Páginas y flujos', () => {
     expect(screen.getByText('RS006')).toBeInTheDocument();
   });
 
+  it('Nosotros y el listado de reservas del admin se renderizan con los datos del caso', () => {
+    const { unmount } = irA('/nosotros');
+    expect(screen.getByRole('heading', { name: 'Nosotros' })).toBeInTheDocument();
+    unmount();
+    irA('/admin/reservas');
+    expect(screen.getByText('RS001')).toBeInTheDocument();
+    expect(screen.getByText('María González')).toBeInTheDocument();
+  });
+
   it('panel admin: crear, editar y eliminar una habitación', async () => {
     irA('/admin/habitaciones');
     await userEvent.click(screen.getByRole('button', { name: 'Crear habitación' }));

@@ -22,7 +22,15 @@ npm run coverage   # pruebas + reporte de cobertura
 ## Vistas
 | Tienda (huésped) | Administración |
 |---|---|
-| Inicio, Habitaciones (con buscador y filtro), Detalle de habitación, Ofertas, Mi reserva (carrito + servicios), Checkout (formulario validado), Reserva exitosa / con error, Nosotros | Dashboard, CRUD de habitaciones, Listado de reservas |
+| Inicio, Habitaciones (con buscador y filtro), Detalle de habitación, Ofertas, Mi reserva (carrito + servicios), Checkout (formulario validado), Reserva exitosa / con error, Nosotros, Contacto, Login y Registro | Dashboard, CRUD de habitaciones, Listado de reservas |
+
+## Usuarios de prueba
+| Rol | Correo | Contraseña |
+|---|---|---|
+| Administrador | admin@hotelsol.cl | admin123 |
+| Cliente | juan@correo.cl | juan123 |
+
+El enlace **Admin** del menú aparece solo al iniciar sesión como administrador.
 
 ## Estructura
 ```
@@ -33,8 +41,13 @@ src/
 ├── pages/                Vistas de la tienda
 ├── pages/admin/          Vistas del panel de administración
 └── __tests__/            Pruebas unitarias
+docs/                     ERS V2 y documento de cobertura
 ```
 
 ## Pruebas
-15 pruebas: renderizado, renderizado condicional, props, estado, eventos y uso de mocks (`vi.fn()`).
-Cobertura actual: 84% líneas, 94% ramas, 93% funciones (umbral exigido: 80%).
+23 pruebas: renderizado, renderizado condicional, props, estado, eventos y uso de mocks (`vi.fn()` y `vi.spyOn()`).
+Cobertura actual: 97% líneas, 93% ramas, 100% funciones (umbral exigido: 80%).
+
+## Documentos de la entrega
+- [ERS versión 2](docs/ERS_V2_HotelSol.md)
+- [Documento de cobertura de testing](docs/Cobertura_Testing.md)
