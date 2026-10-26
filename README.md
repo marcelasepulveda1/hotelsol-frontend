@@ -45,7 +45,7 @@ docs/                     ERS V2 y documento de cobertura
 ```
 
 ## Pruebas
-23 pruebas: renderizado, renderizado condicional, props, estado, eventos y uso de mocks (`vi.fn()` y `vi.spyOn()`).
+24 pruebas: renderizado, renderizado condicional, props, estado, eventos y uso de mocks (`vi.fn()` y `vi.spyOn()`).
 Cobertura actual: 97% líneas, 93% ramas, 100% funciones (umbral exigido: 80%).
 
 ## Documentos de la entrega

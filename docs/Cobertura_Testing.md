@@ -58,19 +58,19 @@ npm run coverage   # ejecuta las pruebas y genera el reporte (carpeta coverage/)
 
 ```
  Test Files  4 passed (4)
-      Tests  23 passed (23)
+      Tests  24 passed (24)
 ```
 
-**23 pruebas, 23 aprobadas, 0 fallidas.**
+**24 pruebas, 24 aprobadas, 0 fallidas.**
 
 ### Cobertura total
 
 | Métrica | Resultado | Umbral | Estado |
 |---|---|---|---|
-| Sentencias (Statements) | **97,41%** | 80% | ✅ Cumple |
-| Ramas (Branches) | **93,39%** | 80% | ✅ Cumple |
+| Sentencias (Statements) | **97,43%** | 80% | ✅ Cumple |
+| Ramas (Branches) | **93,42%** | 80% | ✅ Cumple |
 | Funciones (Functions) | **100%** | 80% | ✅ Cumple |
-| Líneas (Lines) | **97,41%** | 80% | ✅ Cumple |
+| Líneas (Lines) | **97,43%** | 80% | ✅ Cumple |
 
 ### Cobertura por carpeta
 
@@ -79,7 +79,7 @@ npm run coverage   # ejecuta las pruebas y genera el reporte (carpeta coverage/)
 | `src` (App, utils) | 100% | 100% | 100% | 100% |
 | `src/components` | 100% | 96,15% | 100% | 100% |
 | `src/context` | 100% | 88,88% | 100% | 100% |
-| `src/data` (BD simulada) | 100% | 91,66% | 100% | 100% |
+| `src/data` (BD simulada) | 100% | 91,83% | 100% | 100% |
 | `src/pages` | 95,01% | 93,61% | 100% | 95,01% |
 | `src/pages/admin` | 98,5% | 93,93% | 100% | 98,5% |
 
@@ -120,28 +120,29 @@ Las pruebas están en `src/__tests__/` y se agrupan en 4 archivos.
 | 15 | Nosotros y listado de reservas del admin se renderizan con los datos del caso | **Renderizado** |
 | 16 | Panel admin: crear, editar y eliminar una habitación | CRUD desde la interfaz |
 
-### 4.4 `usuarios.test.jsx` — Registro, login y contacto (7 pruebas)
+### 4.4 `usuarios.test.jsx` — Registro, login y contacto (8 pruebas)
 
 | # | Prueba | Tipo de prueba |
 |---|---|---|
 | 17 | `registrarUsuario` no permite correos repetidos | BD simulada |
-| 18 | `iniciarSesion` acepta credenciales correctas y rechaza las incorrectas | BD simulada |
-| 19 | Login de administrador muestra su nombre y el enlace Admin | **Renderizado condicional** + estado global |
-| 20 | Login con clave incorrecta muestra error | Validación |
-| 21 | Registro valida el formulario y luego crea la cuenta | **Estado** + eventos + validación |
-| 22 | Registro con correo repetido muestra el error en el campo | Validación |
-| 23 | Contacto valida y envía el mensaje | **Mock con `vi.spyOn`** + eventos + estado |
+| 18 | Si el navegador tiene una BD antigua sin usuarios, se agregan los iniciales | BD simulada (compatibilidad con localStorage) |
+| 19 | `iniciarSesion` acepta credenciales correctas y rechaza las incorrectas | BD simulada |
+| 20 | Login de administrador muestra su nombre y el enlace Admin | **Renderizado condicional** + estado global |
+| 21 | Login con clave incorrecta muestra error | Validación |
+| 22 | Registro valida el formulario y luego crea la cuenta | **Estado** + eventos + validación |
+| 23 | Registro con correo repetido muestra el error en el campo | Validación |
+| 24 | Contacto valida y envía el mensaje | **Mock con `vi.spyOn`** + eventos + estado |
 
 ### Resumen por tipo de prueba pedido en la pauta
 
 | Tipo | Pruebas |
 |---|---|
 | Renderizado | 7, 15 |
-| Renderizado condicional | 8, 9, 13, 19 |
+| Renderizado condicional | 8, 9, 13, 20 |
 | Props | 6, 9, 12 |
-| Estado | 11, 14, 21, 23 |
-| Eventos | 6, 10, 11, 14, 21, 23 |
-| Uso de mocks | 6, 10 (`vi.fn`), 23 (`vi.spyOn`) |
+| Estado | 11, 14, 22, 24 |
+| Eventos | 6, 10, 11, 14, 22, 24 |
+| Uso de mocks | 6, 10 (`vi.fn`), 24 (`vi.spyOn`) |
 
 ---
 
@@ -168,7 +169,7 @@ El mock reemplaza la función real para comprobar **que el componente la llama**
 | `DetalleHabitacion.jsx` | 18–24 | Mensaje cuando se busca un código de habitación que no existe. |
 | `Reserva.jsx` | 13–20 | Vista de "Mi reserva" vacía (sin habitación elegida). |
 | `Checkout.jsx` | 41–42 | Redirección a error si otra persona reservó la habitación entre el carrito y la confirmación. |
-| `db.js` | 128, 133, 151, 156 | Rama `|| []` usada solo cuando el navegador tiene guardada una BD antigua sin usuarios ni mensajes. |
+| `db.js` | 137, 142, 160, 165 | Rama `|| []` usada solo cuando el navegador tiene guardada una BD antigua sin usuarios ni mensajes. |
 | `AdminHabitaciones.jsx` | 37–38 | Mensaje de error al crear una habitación con código repetido desde el formulario. |
 
 Son casos poco frecuentes o defensivos. La cobertura total ya supera ampliamente el 80% exigido. Como mejora futura se pueden agregar pruebas para estos casos borde.
@@ -177,7 +178,7 @@ Son casos poco frecuentes o defensivos. La cobertura total ya supera ampliamente
 
 ## 7. Conclusión
 
-- Se implementaron **23 pruebas unitarias**, por sobre las 10 que pide la rúbrica para nota máxima.
-- Todas las métricas de cobertura **superan el 80%** (líneas 97,41%, ramas 93,39%, funciones 100%).
+- Se implementaron **24 pruebas unitarias**, por sobre las 10 que pide la rúbrica para nota máxima.
+- Todas las métricas de cobertura **superan el 80%** (líneas 97,43%, ramas 93,42%, funciones 100%).
 - Se probaron los tipos de prueba pedidos: renderizado, renderizado condicional, props, estado, eventos y uso de mocks.
 - Las pruebas de la BD simulada aseguran el requerimiento más importante del caso: **evitar la sobreventa** de habitaciones.

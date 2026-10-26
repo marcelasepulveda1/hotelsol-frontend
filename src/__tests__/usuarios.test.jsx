@@ -21,6 +21,12 @@ describe('Usuarios y contacto', () => {
     expect(repetido.mensaje).toMatch(/Ya existe/);
   });
 
+  it('si el navegador tiene una BD antigua sin usuarios, se agregan los usuarios iniciales', () => {
+    localStorage.setItem('hotelsol_db', JSON.stringify({ habitaciones: [], servicios: [], reservas: [] }));
+    expect(db.iniciarSesion('admin@hotelsol.cl', 'admin123').ok).toBe(true);
+    expect(db.listarMensajes()).toEqual([]);
+  });
+
   it('iniciarSesion acepta credenciales correctas y rechaza las incorrectas', () => {
     expect(db.iniciarSesion('admin@hotelsol.cl', 'admin123').usuario.rol).toBe('admin');
     expect(db.iniciarSesion('admin@hotelsol.cl', 'mala').ok).toBe(false);

@@ -36,7 +36,16 @@ export const datosIniciales = {
 // ---------- Persistencia ----------
 export function cargarDB() {
   const guardado = localStorage.getItem(STORAGE_KEY);
-  if (guardado) return JSON.parse(guardado);
+  if (guardado) {
+    const db = JSON.parse(guardado);
+    // Si el navegador tenía una BD de una versión anterior (sin usuarios), se completan los datos que faltan
+    if (!db.usuarios) {
+      db.usuarios = structuredClone(datosIniciales.usuarios);
+      db.mensajes = [];
+      guardarDB(db);
+    }
+    return db;
+  }
   guardarDB(datosIniciales);
   return structuredClone(datosIniciales);
 }
