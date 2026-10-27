@@ -83,6 +83,18 @@ npm run coverage   # ejecuta las pruebas y genera el reporte (carpeta coverage/)
 | `src/pages` | 95,01% | 93,61% | 100% | 95,01% |
 | `src/pages/admin` | 98,5% | 93,93% | 100% | 98,5% |
 
+### Evidencia de ejecución (27 de octubre de 2026)
+
+Capturas tomadas al ejecutar el proyecto descargado desde este repositorio, después de `npm install`.
+
+**Pruebas y cobertura** (`npm run coverage`): 4 archivos de prueba, 24 pruebas aprobadas.
+
+![Resultado de npm run coverage](evidencias/cobertura-npm-run-coverage.png)
+
+**Aplicación funcionando** (`npm run dev`, vista Habitaciones en `localhost:5173`):
+
+![HotelSol corriendo en localhost](evidencias/app-habitaciones-localhost.png)
+
 ---
 
 ## 4. Detalle de las pruebas
